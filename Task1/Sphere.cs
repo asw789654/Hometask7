@@ -14,17 +14,28 @@
         public double Radius
         {
             get { return radius; }
-            set { radius = value; }
+            set
+            {
+                if (value > 0)
+                {
+                    radius = value;
+                }
+                else
+                {
+                    Console.WriteLine("Введён радиус меньше допустимого.Установлен радиус равный 1 ");
+                    radius = 1;
+                }
+            }
         }
 
         public double GetVolume()
         {
-            return 4.0 / 3.0 * Math.PI * Math.Pow(radius, 3);
+            return 4.0 / 3.0 * Math.PI * radius * radius * radius;
         }
 
         public double GetSquare()
         {
-            return 4 * Math.PI * Math.Pow(radius, 2);
+            return 4 * Math.PI * (radius * radius);
         }
 
         public string GetCenter()
@@ -41,16 +52,15 @@
 
         public bool IsPointInside(double x, double y, double z)
         {
-            bool result = false;
             double newRadius = Math.Sqrt(
                   ((x - this.x) * (x - this.x))
                 + ((y - this.y) * (y - this.y))
                 + ((z - this.z) * (z - this.z)));
             if (newRadius <= radius)
             {
-                result = true;
+                return true;
             }
-            return result;
+            return false;
         }
     }
 }
