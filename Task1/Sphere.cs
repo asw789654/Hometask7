@@ -3,6 +3,7 @@
     internal class Sphere
     {
         private double x, y, z, radius;
+
         public Sphere(double x = 0, double y = 0, double z = 0, double radius = 1)
         {
             this.x = x;
